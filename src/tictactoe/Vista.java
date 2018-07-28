@@ -69,22 +69,42 @@ public class Vista extends JFrame implements ActionListener{
                     x = 0;
                 }                
             }
-        }        
+        }
+        
+        inicializarBotonesMenu();
+        
     }
     
-    public void añadirBotonesMenu(){
+    public void inicializarBotonesMenu(){
         
         int x = 0;
         int anchoBoton = ancho/tablero.tablero[0].length;
+        int altoBoton = 25;
         
-        for (int i = 0; i < tablero.tablero[0])
+        for (int i = 0; i < tablero.tablero[0].length; i++){
+            botonesMenu[i] = new JButton();
+            botonesMenu[i].setName(""+i);
+            botonesMenu[i].addActionListener(this);
+            botonesMenu[i].setBounds(x, 0, anchoBoton, altoBoton);
+            add(botonesMenu[i]);
+            
+            x += anchoBoton;
+        }
         
     }
     
     public void actionPerformed(ActionEvent e){
         
-        System.out.println(((JButton)e.getSource()).getName());
-        
+        //Manejo de botones juego
+        if(((JButton)e.getSource()).getName().length() == 2){
+            System.out.println("Botón juego: "+((JButton)e.getSource()).getName());
+        }        
+        //Manejo de botones menu
+        else{
+            if (((JButton)e.getSource()).getName().length() == 1){
+                System.out.println("Boton menu: "+((JButton)e.getSource()).getName());
+            }
+        }
     }
     
     
